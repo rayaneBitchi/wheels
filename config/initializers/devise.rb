@@ -305,8 +305,6 @@ Devise.setup do |config|
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
 
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
   # ==> Configuration for :registerable
 
   # When set to false, does not sign a user in automatically after their password is
