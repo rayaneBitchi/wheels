@@ -1,0 +1,66 @@
+// use hero-background-image to set background image whith  filter: blur(5px)
+
+.hero-section {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    padding: 0;
+    // justify-content: space-between;
+    // justify-content: center;
+    gap: 4em;
+    max-width: 1200px;
+}
+
+.hero-title {
+    font-family: Roboto Condensed;
+    font-size: 55px;
+    letter-spacing: .1rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    // letter-spacing: 0.2rem;
+    letter-spacing: -1px;
+
+}
+
+.hero-image {
+    width: 400px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.hero-description {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-self: center;
+}
+
+.hero-description h3 {
+    font-family: Roboto Condensed;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    // letter-spacing: 0.2rem;
+}
+
+.hero-description span {
+    color: #952B37
+}
+
+.hero-cta {
+    width: 260.705px;
+    height: 57px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #8813ff;
+    text-transform: uppercase;
+    border: none;
+    font-weight: bold;
+}
+
+// background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);

@@ -1,0 +1,21 @@
+.search-section {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(100, 99, 99, 0.066);
+    padding: 2em;
+    border-radius: 5px;
+    max-width: 1200px;
+}
+
+.search-section input,
+.search-section select {
+    width: 100%;
+    padding: .5em;
+    // border-radius: 5px;
+    border: 1px solid rgba(100, 99, 99, 0.066);
+    font-size: 1em;
+    font-weight: 300;
+    margin-bottom: 1em;
+}
