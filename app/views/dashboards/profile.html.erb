@@ -2,7 +2,7 @@
 
 <p > <%= link_to 'List a car', new_car_path %> </p>
 
-<p> <%= @cars.each do |car| %>
+<p> <% @cars.each do |car| %>
       <%= car.model %>
     <% end %>
  </p>
