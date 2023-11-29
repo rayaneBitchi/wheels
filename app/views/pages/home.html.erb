@@ -2,3 +2,18 @@
 <%= render "hero-section" %>
 <%# render _shearch.html.erb %>
 <%= render "search" %>
+<div class="cars-grid">
+    <% @cars.each do |car| %>
+         <div class="car">
+            <%# image_tag from car-img.jpg %>
+            <%= image_tag "car-img.jpg", class: "car-img" %>
+            <div class="car-infos">
+                <div>
+                    <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
+                    <button type="button" class="btn btn-outline-primary">Details</button>
+                </div>
+                <h5 class="card-pricing">$99.99/Day</h5>
+            </div>
+            </div>
+    <% end %>
+</div>

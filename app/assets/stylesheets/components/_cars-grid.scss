@@ -1,0 +1,47 @@
+.cars-grid {
+    max-width: 1200px;
+    width: 80%;
+    margin: 2em auto;
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(4, 1fr);
+
+}
+
+.car {
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.car-infos {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.car-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.transmission {
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 16px;
+}
+
+.p {
+    font-size: 12px;
+    opacity: .7;
+    margin: 0;
+}
