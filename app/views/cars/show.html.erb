@@ -1,10 +1,10 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Booking
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Book
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -12,11 +12,31 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <form action="#" >
+        <label for="Pickup date"> Pickup</label>
+        <input type="date" class="form-control" value="yyyy-mm-dd"><br>
+        <label for=" dropoff date">Dropoff</label>
+        <input type="date" class="form-control" value="yyyy-mm-dd">
+        <label for="city">City</label>
+        <select name="city" id="area" class="form-select">
+        <option value="Montreal">Montreal</option>
+        <option value="New York">New York</option>
+        <option value="Quebec City">Quebec City</option>
+        <option value="Toronto">Toronto</option>
+        <option value="Vancouver">Vancouver</option>
+        </select>
+        <label for="area code">Area Code</label>
+        <input type="text" class="form-control">
+        <label for="Pickup location">Pickup Location</label>
+        <input type="text" class="form-control">
+        <label for="dropoff location">Dropoff Location</label>
+        <input type="text" class="form-control">
 
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Confirm</button>
       </div>
     </div>
   </div>
