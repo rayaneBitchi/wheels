@@ -1,10 +1,14 @@
-<div class="p-5">
-<h1> <%= @user.first_name %>'s profile</h1>
+<div class="container">
+  <div class="p-5">
+  <h1> <%= @user.first_name %>'s profile</h1>
 
-<p > <%= link_to 'List a car', new_car_path %> </p>
+  <p > <%= link_to 'List a car', new_car_path %> </p>
+  <br>
+  <p> <%= link_to 'homepage', root_path %> </p>
 
-<p> <% @cars.each do |car| %>
-      <%= car.model %>
-    <% end %>
- </p>
+  <p> <% @cars.each do |car| %>
+        <%= car.model %>
+      <% end %>
+  </p>
+  </div>
 </div>
