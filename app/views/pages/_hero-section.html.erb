@@ -5,9 +5,9 @@
             <h3>Find a rental car or rent your car</h3>
         </div>
         <% if user_signed_in? %>
-            <button class="hero-cta btn">List a car</button>
+            <%= link_to  "list" new_car_path  class="hero-cta btn" %>
         <% else %>
-            <button class="hero-cta btn">Rent now</button>
+            <%= link_to "sign up" new_registration_path class="hero-cta btn"%>
         <% end %>
 
    </div>
