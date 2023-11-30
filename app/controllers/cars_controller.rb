@@ -12,7 +12,7 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-    raise
+    # raise
     @car.save
     redirect_to profile_path
   end
