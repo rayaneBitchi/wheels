@@ -79,3 +79,9 @@ group :test do
   gem "selenium-webdriver"
 end
 
+<<<<<<< HEAD
+=======
+gem "devise"
+
+gem 'faker'
+>>>>>>> 28c6889527fd01cc96b3e95372497de9136ac518
