@@ -10,9 +10,10 @@
             <div class="car-infos">
                 <div>
                     <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
-                    <button type="button" class="btn btn-outline-primary">Details</button>
+                    <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
+                    <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
                 </div>
-                <h5 class="card-pricing">$99.99/Day</h5>
+                <h5 class="card-pricing">$<%= car.price %>/Day</h5>
             </div>
             </div>
     <% end %>
