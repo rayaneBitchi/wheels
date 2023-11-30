@@ -13,8 +13,18 @@
 
 body {
     background-color: white;
+    display: flex;
+    flex-direction: column;
 }
 
 .dropdown-menu {
     margin: -8em;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.wrapper {
+min-height: calc(100vh - 65.51px - 331.87px);
 }
