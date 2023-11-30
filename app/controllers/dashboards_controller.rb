@@ -5,5 +5,6 @@ class DashboardsController < ApplicationController
     # @user_cars = Car.where(user_id: @user.id)
     # raise
     @cars = @user.cars
+    @bookings = @user.bookings
   end
 end
