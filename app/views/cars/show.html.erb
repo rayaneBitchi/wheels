@@ -1,4 +1,17 @@
-<!-- Button trigger modal -->
+
+<%# boostrap 5 card %>
+
+<div class="car-container">
+  <h1 class="car-title"><%= @car.model %> <%= @car.make %></h1>
+  <p>Transmission: <%= @car.transmission %></p>
+  <p>Year: <%= @car.year %></p>
+  <p>Color: <%= @car.color %></p>
+  <p>Price per day: <%= @car.price %></p>
+  <p>Area: <%= @car.area %></p>
+
+
+  <%# Modal %>
+  <!-- Button trigger modal -->
 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Book
 </button>
@@ -41,3 +54,8 @@
     </div>
   </div>
 </div>
+
+</div>
+
+
+
