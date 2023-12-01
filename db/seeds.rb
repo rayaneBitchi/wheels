@@ -66,7 +66,3 @@ booking3 = Booking.new(pickup_date: "2021-09-01", return_date: "2021-09-03", sta
 booking3.user = rayane
 booking3.car = rayaneCar
 booking3.save
-
-
-
-
