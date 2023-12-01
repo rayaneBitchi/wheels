@@ -14,8 +14,11 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     # raise
-    @car.save
-    redirect_to profile_path
+    if @car.save
+      redirect_to profile_path, notice: "You've added a new car"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
