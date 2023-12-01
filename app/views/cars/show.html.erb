@@ -26,6 +26,39 @@
   <% else %>
    <%= link_to 'Log in to book!', user_session_path %>
   <% end %>
+  <% end %>
+
+<!-- Modal -->
+<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@car, @booking] do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <%# <div class="form-inputs"> %>
+            <%= f.input :pickup_date, 
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } 
+            %>
+            <%= f.input :return_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } }
+            %>
+            <%= f.input :pick_up_address %>
+            <%= f.input :drop_off_address %>
+        <%# </div> %>
+      <% end %>
+      <h5>TOAL: </h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Confirm</button>
+      </div>
      </div>
     </div>
   </div>
