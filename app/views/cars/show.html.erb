@@ -19,7 +19,18 @@
 
   <%# Modal %>
   <!-- Button trigger modal -->
-  <% if current_user %>
+  <% if @car.user == current_user%>
+    <div class="row">
+      <%= link_to 'Edit',  edit_car_path, class:"hero-cta btn w-50"%>
+      <%#= link_to 'Delete',  profile_path, class:"hero-cta btn w-50"%>
+      <%# <button data-action="click->delete-button#delete" class="hero-cta btn w-50">Delete</button> %>
+      <%= link_to "Delete",
+        car_path(@car),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+        class:"hero-cta btn w-50"
+      %>
+    </div>
+  <% elsif current_user %>
     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Book
     </button>
