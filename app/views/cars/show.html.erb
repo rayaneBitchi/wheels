@@ -25,7 +25,7 @@
       <%#= link_to 'Delete',  profile_path, class:"hero-cta btn w-50"%>
       <%# <button data-action="click->delete-button#delete" class="hero-cta btn w-50">Delete</button> %>
       <%= link_to "Delete",
-        cars_path(@car),
+        car_path(@car),
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
         class:"hero-cta btn w-50"
       %>

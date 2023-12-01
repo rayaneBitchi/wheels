@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
-  before_action :set_car, only: [:show, :edit, :update, :destroy, :index]
+  before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def show
     # @car = Car.find(params[:id])  #set in before action
