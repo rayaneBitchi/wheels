@@ -6,15 +6,21 @@
   <h3 class="row justify-content-center">Your car(s) ready to rent 🚗 </h3>
   <div class="cars-grid">
     <p> <% @cars.each do |car| %>
+
           <div class="car">
-                <%# image_tag from car-img.jpg %>
+            <% if car.photos.attached? %>
+            <%= cl_image_tag car.photos.first.key, class: "car-img" %>
+            <% else %>
                 <%= image_tag "car-img.jpg", class: "car-img" %>
-                <div class="car-infos">
-                        <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
-                        <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
-                        <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
+            <% end %>
+            <div class="car-infos">
+                <div>
+                    <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
+                    <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
+                    <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
                 </div>
                 <h5 class="card-pricing">$<%= car.price %>/Day</h5>
+            </div>
           </div>
         <% end %>
     </p>
@@ -22,20 +28,23 @@
   <br>
   <h3 class="row justify-content-center">Your booking(s) 🎫 </h3>
 <div class="cars-grid">
-  <% if @bookings.present? %>
-    <p> <% @bookings.each do |booking| %>
-          <div class="car">
-            <% car = Car.find(booking.car_id) %>
-            <%= image_tag "car-img.jpg", class: "car-img" %>
-            <div class="car-infos">
-                    <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
-                    <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
-                    <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
+  <% if @bookings.any? %>
+      <div class="cars-grid">
+          <% @bookings.each do |booking| %>
+            <div class="card" style="width: 20rem;">
+            <% if booking.car.photos.attached? %>
+              <%= cl_image_tag booking.car.photos.first.key, class: "car-img" %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= booking.car.model %> <%= booking.car.make %></h5>
+              <p class="card-text"><%= booking.car.transmission %></p>
+              <p class="card-text">Total : $<%= booking.total_price %></p>
             </div>
-            <h5 class="card-pricing">$<%= booking.total_price %></h5>
-          </div>
-        <% end %>
-  <% else %>
+            </div>
+          <% end %>
+      </div>
+    <% else %>
+  <p>
     <em>You don't have any bookings yet! <%= link_to "Book now!", root_path %></em>
     </p>
   <% end %>
