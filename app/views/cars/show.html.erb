@@ -14,13 +14,28 @@
       <p>Price per day: $<%= @car.price %></p>
   <%# Modal %>
   <!-- Button trigger modal -->
-  <% if current_user %>
+  <% if @car.user == current_user%>
+    <div class="row justify-content-between">
+      <%= link_to 'Edit',  edit_car_path, class:"hero-cta btn w-50"%>
+      <%#= link_to 'Delete',  profile_path, class:"hero-cta btn w-50"%>
+      <%# <button data-action="click->delete-button#delete" class="hero-cta btn w-50">Delete</button> %>
+      <%= link_to "Delete",
+        car_path(@car),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
+        class:"hero-cta btn w-50"
+      %>
+    </div>
+  <% elsif current_user %>
     <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Book
     </button>
   <% else %>
    <%= link_to 'Log in to book!', user_session_path, class:"hero-cta btn" %>
   <% end %>
+
+  <br>
+  <br>
+  <%= link_to 'Back', :back, class:"row justify-content-center btn btn-dark"%>
 
 <!-- Modal -->
   <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
