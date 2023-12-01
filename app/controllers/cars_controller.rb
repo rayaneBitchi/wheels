@@ -1,8 +1,9 @@
 class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_car, only: [:show, :edit, :update, :delete]
 
   def show
-    @car = Car.find(params[:id])
+    # @car = Car.find(params[:id])  #set in before action
     @booking = Booking.new
   end
 
@@ -18,7 +19,25 @@ class CarsController < ApplicationController
     redirect_to profile_path
   end
 
+  def edit
+  end
+
+  def update
+    @car.update(car_params)
+    redirect_to car_path(@car)
+  end
+
+  def delete
+    # before_action defines @car
+    @car.destroy
+    redirect_to profile_path # status: :see_others
+  end
+
   private
+
+  def set_car
+    @car = Car.find(params[:id])
+  end
 
   def car_params
     params.require(:car).permit(:model, :year, :make, :color, :price, :transmission, :area, photos: [])
