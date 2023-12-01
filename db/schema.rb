@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_30_175717) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_014850) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,8 +50,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_175717) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "pick_up_address"
-    t.string "drop_off_address"
     t.float "total_price"
     t.index ["car_id"], name: "index_bookings_on_car_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
@@ -62,13 +60,24 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_175717) do
     t.integer "year"
     t.string "make"
     t.string "color"
-    t.float "price"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "transmission"
-    t.string "area"
     t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.boolean "available"
+    t.float "price"
+    t.string "pickup_address"
+    t.string "dropoff_address"
+    t.bigint "car_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_listings_on_car_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +100,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_30_175717) do
   add_foreign_key "bookings", "cars"
   add_foreign_key "bookings", "users"
   add_foreign_key "cars", "users"
+  add_foreign_key "listings", "cars"
+  add_foreign_key "listings", "users"
 end

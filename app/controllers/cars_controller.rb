@@ -2,8 +2,11 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def show
-    @car = Car.find(params[:id])
-    @booking = Booking.new
+    # @listing = Listing.find(params[:id])
+    # pp @listing
+    # @listing = Listing.where(car_id: c.id)
+    # pp @listing
+    # @booking = Booking.new
   end
 
   def new
@@ -13,7 +16,6 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-    # raise
     @car.save
     redirect_to profile_path
   end
@@ -21,6 +23,6 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:model, :year, :make, :color, :price, :transmission, :area, photos: [])
+    params.require(:car).permit(:model, :year, :make, :color, :transmission, photos: [])
   end
 end

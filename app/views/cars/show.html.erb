@@ -2,19 +2,19 @@
 <%# boostrap 5 card %>
 
 <div class="car-container">
-  <% if @car.photos.attached? %>
-    <% @car.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, class: "car-img" %>
+      <% if @listing.car.photos.attached? %>
+      <% @listing.car.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, class: "car-img" %>
+      <% end %>
     <% end %>
-  <% end %>
-  <div>
-    <h1 class="car-title"><%= @car.model %> <%= @car.make %></h1>
-    <p>Transmission: <%= @car.transmission %></p>
-    <p>Year: <%= @car.year %></p>
-    <p>Color: <%= @car.color %></p>
-    <p>Price per day: $<%= @car.price %></p>
-    <p>Area: <%= @car.area %></p>
-  </div>
+
+      <h1 class="car-title"><%= @listing.car.model %> <%= @listing.car.make %></h1>
+      <p>Transmission: <%= @listing.car.transmission %></p>
+      <p>Year: <%= @listing.car.year %></p>
+      <p>Color: <%= @listing.car.color %></p>
+      <p>Price per day: $<%= @listing.price %></p>
+      <p>Pickup address: <%= @listing.pickup_address %></p>
+      <p>Return address: <%= @listing.return_address %></p>
 
 
   <%# Modal %>
@@ -36,7 +36,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [@car, @booking] do |f| %>
+        <%= simple_form_for [@listing, @booking] do |f| %>
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 

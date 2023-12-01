@@ -3,20 +3,20 @@
 <%# render _shearch.html.erb %>
 <%= render "search" %>
 <div class="cars-grid">
-    <% @cars.each do |car| %>
+    <% @listings.each do |listing| %>
          <div class="car">
-            <% if car.photos.attached? %>
-            <%= cl_image_tag car.photos.first.key, class: "car-img" %>
+            <% if listing.car.photos.attached? %>
+            <%= cl_image_tag listing.car.photos.first.key, class: "car-img" %>
             <% else %>
                 <%= image_tag "car-img.jpg", class: "car-img" %>
             <% end %>
             <div class="car-infos">
                 <div>
-                    <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
-                    <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
+                    <h5><%= listing.car.make %> <%= listing.car.model %> <span class="transmission"><%= listing.car.transmission %></span></h5>
+                    <%= link_to "Details", listing_path(listing), class: "btn btn-outline-primary" %>
                     <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
                 </div>
-                <h5 class="card-pricing">$<%= car.price %>/Day</h5>
+                <h5 class="card-pricing">$<%= listing.price %>/Day</h5>
             </div>
           </div>
     <% end %>

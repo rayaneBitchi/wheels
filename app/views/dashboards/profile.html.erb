@@ -1,43 +1,133 @@
-<div class="p-5">
-  <h1> <%= @user.first_name %>'s profile</h1>
+<div class="dasbord-container">
+  
+<div class="container-fluid">
+  <div class="row" data-controller="toggledashboardcontainer">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Listing</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column list-group list-group-flush">
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#" data-action="click->toggledashboardcontainer#addcar">
+              <span data-feather="file"></span>
+              Add a car
+            </a>
+          </li>
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              List a car
+            </a>
+          </li>
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#" data-action="click->toggledashboardcontainer#carlist">
+              <span data-feather="users"></span>
+              View your cars
+            </a>
+          </li>
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Renting requests
+            </a>
+          </li>
+          
+        </ul>
 
-  <p class="btn hero-cta my-3"> <%= link_to 'List a car', new_car_path %> </p>
-  <br>
-  <h3 class="row justify-content-center">Your car(s) ready to rent 🚗 </h3>
-  <div class="cars-grid">
-    <p> <% @cars.each do |car| %>
-          <div class="car">
-                <%# image_tag from car-img.jpg %>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Renting</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2 list-group list-group-flush">
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Pending requests
+            </a>
+          </li>
+          
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              All your Rent History
+            </a>
+          </li>
+          <li class="nav-item list-group-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Confirmed requests
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3 class="font-monospace"><span class="text-danger"><%= @user.first_name %></span>'s dashboard</h3>    
+      </div>
+
+
+      <%# Add car form %>
+
+      <div data-toggledashboardcontainer-target="addCar" class="container mt-4 d-none" >
+      <h3 class="">Enter you car information</h3>
+
+      <%= simple_form_for(@newCar) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+          <%= f.input :model %>
+          <%= f.input :year %>
+          <%= f.input :make %>
+          <%= f.input :color %>
+          <%= f.input :transmission %>
+          <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+          <%= f.button :submit, "Add a car", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+      
+    <%# User car list %>
+
+
+    <div data-toggledashboardcontainer-target="carList" class="container mt-4 d-none" >
+      <h3 class="">Your cars</h3>
+      <% if @cars.any? %>
+        <div class="cars-grid">
+          <% @cars.each do |car| %>
+          <div class="card" style="width: 20rem;">
+          <% if car.photos.attached? %>
+            <%= cl_image_tag car.photos.first.key, class: "car-img" %>
+            <% else %>
                 <%= image_tag "car-img.jpg", class: "car-img" %>
-                <div class="car-infos">
-                        <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
-                        <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
-                        <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
-                </div>
-                <h5 class="card-pricing">$<%= car.price %>/Day</h5>
+            <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= car.model %> <%= car.make %></h5>
+            <p class="card-text"><%= car.transmission %></p>
+            <a href="#" class="btn btn-primary">Edit</a> <a href="#" class="btn btn-danger text-white">Delete</a>
           </div>
+        </div>
         <% end %>
-    </p>
+        <div>
+      <% else %>
+      <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h5 class="display-5 fw-bold">You have no car in you profil</h5>
+        <button class="btn btn-primary btn-lg" type="button">Add one now</button>
+      </div>
+    </div>
+      <% end %>
+    </div>
+
+    </main>
   </div>
-  <br>
-  <h3 class="row justify-content-center">Your booking(s) 🎫 </h3>
-<div class="cars-grid">
-  <% if @bookings.present? %>
-    <p> <% @bookings.each do |booking| %>
-          <div class="car">
-            <% car = Car.find(booking.car_id) %>
-            <%= image_tag "car-img.jpg", class: "car-img" %>
-            <div class="car-infos">
-                    <h5><%= car.make %> <%= car.model %> <span class="transmission"><%= car.transmission %></span></h5>
-                    <%= link_to "Details", car_path(car), class: "btn btn-outline-primary" %>
-                    <%# <button type="button" class="btn btn-outline-primary">Details</button> %>
-            </div>
-            <h5 class="card-pricing">$<%= booking.total_price %></h5>
-          </div>
-        <% end %>
-  <% else %>
-    <em>You don't have any bookings yet! <%= link_to "Book now!", root_path %></em>
-    </p>
-  <% end %>
 </div>
+
+
 </div>

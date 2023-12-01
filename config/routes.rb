@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :cars, only: [:show, :index, :new, :create] do
+  resources :cars, only: [:show, :index, :new, :create]
+  resources :listings, only: [:show] do
     resources :bookings, only: [:create]
   end
   devise_for :users

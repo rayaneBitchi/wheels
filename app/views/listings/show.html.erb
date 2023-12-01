@@ -1,0 +1,56 @@
+<div class="car-container">
+  <% if @listing.car.photos.attached? %>
+    <% @listing.car.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, class: "car-img" %>
+    <% end %>
+  <% end %>
+  <div>
+    <h1 class="car-title"><%= @listing.car.model %> <%= @listing.car.make %></h1>
+    <p>Transmission: <%= @listing.car.transmission %></p>
+    <p>Year: <%= @listing.car.year %></p>
+    <p>Color: <%= @listing.car.color %></p>
+    <p>Price per day: $<%= @listing.price %></p>
+    <p>Pickup address: <%= @listing.pickup_address %></p>
+    <p>Return address: <%= @listing.dropoff_address %></p>
+  </div>
+
+  <% if current_user %>
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Book
+    </button>
+  <% else %>
+   <%= link_to 'Log in to book!', user_session_path %>
+  <% end %>
+
+<!-- Modal -->
+<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [@listing, @booking] do |f| %>
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <%= f.input :pickup_date, 
+            as: :string,
+            input_html: { data: { controller: "datepicker" } } 
+            %>
+            <%= f.input :return_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } }
+            %>
+      <% end %>
+      <h5>TOAL: </h5>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+</div>

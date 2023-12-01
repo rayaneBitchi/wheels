@@ -1,5 +1,5 @@
 <div class="container mt-5 ">
-    <h1>Enter your magnificient car details!</h1>
+    <h3 class="font-monospace">Enter you car information</h3>
 
   <%= simple_form_for(@car) do |f| %>
     <%= f.error_notification %>
@@ -10,12 +10,9 @@
       <%= f.input :year %>
       <%= f.input :make %>
       <%= f.input :color %>
-      <%= f.input :price %>
       <%= f.input :transmission %>
-      <%= f.input :area %>
       <%= f.input :photos, as: :file, input_html: { multiple: true } %>
       <%= f.button :submit, "Add a car", class: "btn btn-primary" %>
-
     </div>
   <% end %>
 </div>
