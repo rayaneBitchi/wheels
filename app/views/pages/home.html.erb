@@ -7,8 +7,6 @@
          <div class="car">
             <% if car.photos.attached? %>
             <%= cl_image_tag car.photos.first.key, class: "car-img" %>
-            <% else %>
-                <%= image_tag "car-img.jpg", class: "car-img" %>
             <% end %>
             <div class="car-infos">
                 <div>
