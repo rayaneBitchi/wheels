@@ -24,8 +24,7 @@
       Book
     </button>
   <% else %>
-   <%= link_to 'Log in to book!', user_session_path %>
-  <% end %>
+   <%= link_to 'Log in to book!', user_session_path, class:"hero-cta btn"%>
   <% end %>
 
 <!-- Modal -->
@@ -41,9 +40,9 @@
           <%= f.error_notification %>
           <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
           <%# <div class="form-inputs"> %>
-            <%= f.input :pickup_date, 
+            <%= f.input :pickup_date,
             as: :string,
-            input_html: { data: { controller: "datepicker" } } 
+            input_html: { data: { controller: "datepicker" } }
             %>
             <%= f.input :return_date,
             as: :string,
