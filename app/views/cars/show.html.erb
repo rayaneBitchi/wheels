@@ -24,63 +24,41 @@
       Book
     </button>
   <% else %>
-   <%= link_to 'Log in to book!', user_session_path %>
+   <%= link_to 'Log in to book!', user_session_path, class:"hero-cta btn"%>
   <% end %>
 
 <!-- Modal -->
-<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= simple_form_for [@car, @booking] do |f| %>
-          <%= f.error_notification %>
-          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-          <%# <div class="form-inputs"> %>
-            <%= f.input :pickup_date, 
-            as: :string,
-            input_html: { data: { controller: "datepicker" } } 
-            %>
-            <%= f.input :return_date,
-            as: :string,
-            input_html: { data: { controller: "datepicker" } }
-            %>
-            <%# <%= f.input :pick_up_address %>
-            <%# <%= f.input :drop_off_address %>
-        <%# </div> %>
-      <% end %>
-      <h5>TOAL: </h5>
-        <%# <form action="#" >
-        <label for="Pickup date"> Pickup</label>
-        <input type="date" class="form-control" value="yyyy-mm-dd"><br>
-        <label for=" dropoff date">Dropoff</label>
-        <input type="date" class="form-control" value="yyyy-mm-dd">
-        <label for="city">City</label>
-        <select name="city" id="area" class="form-select">
-        <option value="Montreal">Montreal</option>
-        <option value="New York">New York</option>
-        <option value="Quebec City">Quebec City</option>
-        <option value="Toronto">Toronto</option>
-        <option value="Vancouver">Vancouver</option>
-        </select>
-        <label for="area code">Area Code</label>
-        <input type="text" class="form-control">
-        <label for="Pickup location">Pickup Location</label>
-        <input type="text" class="form-control">
-        <label for="dropoff location">Dropoff Location</label>
-        <input type="text" class="form-control"> %>
-
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-dark">Confirm</button>
+  <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for [@car, @booking] do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <%# <div class="form-inputs"> %>
+              <%= f.input :pickup_date,
+              as: :string,
+              input_html: { data: { controller: "datepicker" } }
+              %>
+              <%= f.input :return_date,
+              as: :string,
+              input_html: { data: { controller: "datepicker" } }
+              %>
+              <%= f.input :pick_up_address %>
+              <%= f.input :drop_off_address %>
+          <%# </div> %>
+          <% end %>
+          <h5>TOAL: </h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark">Confirm</button>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
