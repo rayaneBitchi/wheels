@@ -3,31 +3,25 @@
 
 <div class="car-container">
   <% if @car.photos.attached? %>
-    <% @car.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, class: "car-img" %>
+      <% @car.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, class: "car-img" %>
+      <% end %>
     <% end %>
-  <% end %>
-  <div>
-    <h1 class="car-title"><%= @car.model %> <%= @car.make %></h1>
-    <p>Transmission: <%= @car.transmission %></p>
-    <p>Year: <%= @car.year %></p>
-    <p>Color: <%= @car.color %></p>
-    <p>Price per day: $<%= @car.price %></p>
-    <p>Area: <%= @car.area %></p>
-  </div>
-
-
+      <h1 class="car-title"><%= @car.model %> <%= @car.make %></h1>
+      <p>Transmission: <%= @car.transmission %></p>
+      <p>Year: <%= @car.year %></p>
+      <p>Color: <%= @car.color %></p>
+      <p>Price per day: $<%= @car.price %></p>
   <%# Modal %>
   <!-- Button trigger modal -->
   <% if @car.user == current_user%>
     <div class="row justify-content-between">
-      <%= link_to 'Edit',  edit_car_path, class:"hero-cta btn w-50"%>
-      <%#= link_to 'Delete',  profile_path, class:"hero-cta btn w-50"%>
-      <%# <button data-action="click->delete-button#delete" class="hero-cta btn w-50">Delete</button> %>
+      <%= link_to 'Edit',  edit_car_path, class:"hero-cta btn w-40 mx-2"%>
+      &#32;
       <%= link_to "Delete",
         car_path(@car),
         data: {turbo_method: :delete, turbo_confirm: "Are you sure?"},
-        class:"hero-cta btn w-50"
+        class:"hero-cta btn w-40 mx-2"
       %>
     </div>
   <% elsif current_user %>
@@ -35,7 +29,7 @@
       Book
     </button>
   <% else %>
-   <%= link_to 'Log in to book!', user_session_path, class:"hero-cta btn"%>
+   <%= link_to 'Log in to book!', user_session_path, class:"hero-cta btn" %>
   <% end %>
 
   <br>
@@ -65,13 +59,12 @@
               %>
               <%= f.input :pick_up_address %>
               <%= f.input :drop_off_address %>
-          <%# </div> %>
+              <%# </div> %>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+              <%= f.submit "Book", class: "btn btn-dark" %>
+            </div>
           <% end %>
-          <h5>TOAL: </h5>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-dark">Confirm</button>
         </div>
       </div>
     </div>
